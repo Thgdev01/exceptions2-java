@@ -3,6 +3,7 @@ package application;
 import java.util.Locale;
 import java.util.Scanner;
 
+import exceptions.BusinessException;
 import model.entities.Account;
 
 public class Program {
@@ -12,23 +13,30 @@ public class Program {
 		Scanner sc = new Scanner(System.in);
 		
 		
-		System.out.println("Enter account data");
-		System.out.print("Number: ");
+		System.out.println("Informe os dados da conta");
+		System.out.print("Número: ");
 		int number = sc.nextInt();
-		System.out.print("Holder: ");
+		System.out.print("Titular: ");
 		sc.next();
 		String holder = sc.nextLine();
-		System.out.print("Initial balance: ");
+		System.out.print("Saldo inicial: ");
 		double balance = sc.nextDouble();
-		System.out.print("Withdraw limit: ");
+		System.out.print("Limite de saque: ");
 		double withdrawLimit = sc.nextDouble();
 		
 		Account account = new Account(number, holder, balance, withdrawLimit);
 		
 		System.out.println();
-		System.out.print("Enter amount for withdraw: ");
-		double withdraw = sc.nextDouble();
+		System.out.print("Informe a quantia que deseja sacar: ");
+		double amount = sc.nextDouble();
 		
+		try {
+			account.withdraw(amount);
+			System.out.printf("New balance: %.2f%n", account.getBalance());
+		}
+		catch (BusinessException e) {
+			System.out.println(e.getMessage());
+		}
 		
 		sc.close();
 	}
