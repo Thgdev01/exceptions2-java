@@ -6,6 +6,9 @@ public class Account {
 	private double balance;
 	private double withdrawLimit;
 	
+	public Account() {
+	}
+	
 	public Account(int number, String holder, double balance, double withdrawLimit) {
 		this.number = number;
 		this.holder = holder;
@@ -32,17 +35,26 @@ public class Account {
 	public double getBalance() {
 		return balance;
 	}
+	
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
 
 
 	public double getWithdrawLimit() {
 		return withdrawLimit;
 	}
+	
+
+	public void setWithdrawLimit(double withdrawLimit) {
+		this.withdrawLimit = withdrawLimit;
+	}
 
 	public void deposit(double amount) {
-		this.balance = amount + balance;
+		balance += amount;
 	}
 	
 	public void withdraw(double amount) {
-		this.balance = amount - balance;
+		balance -= amount;
 	}
 }
